@@ -13,3 +13,5 @@ tomcat版本：tomcat7
 数据库：mysql
 
 前端框架：layui
+
+模板渲染：freemarker
