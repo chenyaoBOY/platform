@@ -1,0 +1,71 @@
+
+
+<div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <li class="layui-nav-item layui-nav-itemed">
+                <a class="" href="javascript:;">算税费</a>
+                <dl class="layui-nav-child">
+                    <dd <#if pageStatus??><#if pageStatus==0>class='layui-this'</#if></#if>>
+                        <a href="http://localhost:8080/frog/tax.do"  >商品房</a>
+                    </dd>
+                </dl>
+                <dl class="layui-nav-child">
+                    <dd <#if pageStatus??><#if pageStatus==1>class='layui-this'</#if></#if>>
+                        <a href="http://localhost:8080/frog/tax.do?type=1"  >一类经适房</a>
+                    </dd>
+                </dl>
+                <dl class="layui-nav-child">
+                    <dd <#if pageStatus??><#if pageStatus==2>class='layui-this'</#if></#if>>
+                        <a href="http://localhost:8080/frog/tax.do?type=2"  >二类经适房</a>
+                    </dd>
+                </dl>
+                <dl class="layui-nav-child">
+                    <dd <#if pageStatus??><#if pageStatus==3>class='layui-this'</#if></#if>>
+                        <a href="http://localhost:8080/frog/tax.do?type=3"  >央产房</a>
+                    </dd>
+                </dl>
+                <dl class="layui-nav-child">
+                    <dd <#if pageStatus??><#if pageStatus==4>class='layui-this'</#if></#if>>
+                        <a href="http://localhost:8080/frog/tax.do?type=4"  >商住两用</a>
+                    </dd>
+                </dl>
+            </li>
+
+            <li class="layui-nav-item layui-nav-itemed" >
+                <a href="javascript:;">算贷款</a>
+                <dl class="layui-nav-child">
+                    <dd <#if pageStatus??><#if pageStatus==5>class='layui-this'</#if></#if>>
+                        <a href="http://localhost:8080/frog/businessLoan.do"  >商业贷款</a>
+                    </dd>
+                    <dd <#if pageStatus??><#if pageStatus==6>class='layui-this'</#if></#if>>
+                        <a href="http://localhost:8080/frog/foundLoan.do"  >公积金贷款</a>
+                    <dd <#if pageStatus??><#if pageStatus==7>class='layui-this'</#if></#if>>
+                    <dd>
+                        <a href="">组合贷款</a>
+                    </dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item layui-nav-itemed">
+                <a class="" href="javascript:;">算月供</a>
+                <dl class="layui-nav-child">
+                    <dd <#if pageStatus??><#if pageStatus==8>class='layui-this'</#if></#if>>
+                        <a href="javascript:;">等额本息</a>
+                    </dd>
+                </dl>
+                <dl class="layui-nav-child">
+                    <dd <#if pageStatus??><#if pageStatus==9>class='layui-this'</#if></#if>>
+                        <a href="javascript:;">等额本金</a>
+                    </dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">客户列表</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">模板列表</a>
+            </li>
+        </ul>
+    </div>
+</div>

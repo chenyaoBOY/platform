@@ -26,7 +26,7 @@ function calculateBusiness() {
     var proxyFeePercent = div(proxy_fee,100);//代理费百分比
 
     qishui = mul(webPrice,0.01);
-    crj_val = mul($('#selfcost_val').val(),$("#house_area").val())
+    crj_val = mul($('#house_status_value').val(),$("#house_area").val())
 
     total_fee= add(qishui,crj_val);
     allFee = add(total_fee,totalPrice);
@@ -99,12 +99,6 @@ function checkNumber(ele,p,p2) {
     $('#'+p).hide();
 
 
-}
-//重置表单
-function resetForm() {
-    $('#totalMoney').val('');
-    $('#originalValue').val('');
-    $('#proxy_fee').val('');
 }
 function tip(p,txt) {
     $('#'+p).text(txt);

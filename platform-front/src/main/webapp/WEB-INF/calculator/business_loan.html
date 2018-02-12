@@ -11,128 +11,10 @@
 
 	<body class="layui-layout-body">
 		<div class="layui-layout layui-layout-admin">
-			<!--头部导航栏-->
-			<div class="layui-header">
-				<div class="layui-logo">91青蛙 FrogData</div>
-				<!-- 头部区域（可配合layui已有的水平导航） -->
-				<ul class="layui-nav layui-layout-left">
-					<li class="layui-nav-item layui-this">
-						<a href="">房贷通</a>
-					</li>
-					<li class="layui-nav-item">
-						<a href="">计算器</a>
-					</li>
-					<li class="layui-nav-item">
-						<a href="">91青蛙社区<span class="layui-badge-dot"></span></a>
-					</li>
-					<li class="layui-nav-item">
-						<a href="javascript:;">其它工具</a>
-						<dl class="layui-nav-child">
-							<dd>
-								<a href="">超级计算器</a>
-							</dd>
-							<dd>
-								<a href="">消息管理</a>
-							</dd>
-							<dd>
-								<a href="">授权管理</a>
-							</dd>
-						</dl>
-					</li>
-					<li class="layui-nav-item">
-						<a href="">更多功能，敬请期待！</a>
-					</li>
-				</ul>
-				<ul class="layui-nav layui-layout-right">
-					<li class="layui-nav-item">
-						<a href="javascript:;">
-							<img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
-						</a>
-						<dl class="layui-nav-child">
-							<dd>
-								<a href="">基本资料</a>
-							</dd>
-							<dd>
-								<a href="">安全设置</a>
-							</dd>
-						</dl>
-					</li>
-					<li class="layui-nav-item">
-						<a href="">退了</a>
-					</li>
-				</ul>
-			</div>
-
+			<!--导航栏-->
+			<#include "/model/header.html" />
 			<!--侧边栏-->
-			<div class="layui-side layui-bg-black">
-				<div class="layui-side-scroll">
-					<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-					<ul class="layui-nav layui-nav-tree" lay-filter="test">
-						<li class="layui-nav-item layui-nav-itemed">
-							<a class="" href="javascript:;">算税费</a>
-							<dl class="layui-nav-child">
-								<dd >
-									<a href="http://localhost:8080/frog/tax.do">商品房</a>
-								</dd>
-							</dl>
-							<dl class="layui-nav-child">
-								<dd >
-									<a href="http://localhost:8080/frog/tax.do?type=1" >一类经适房</a>
-								</dd>
-							</dl>
-							<dl class="layui-nav-child">
-								<dd >
-									<a href="http://localhost:8080/frog/tax.do?type=2">二类经适房</a>
-								</dd>
-							</dl>
-							<dl class="layui-nav-child">
-								<dd >
-									<a href="http://localhost:8080/frog/tax.do?type=3">央产房</a>
-								</dd>
-							</dl>
-							<dl class="layui-nav-child">
-								<dd >
-									<a href="http://localhost:8080/frog/tax.do?type=4">商住两用</a>
-								</dd>
-							</dl>
-						</li>
-
-						<li class="layui-nav-item layui-nav-itemed" >
-							<a href="javascript:;">算贷款</a>
-							<dl class="layui-nav-child">
-								<dd class="layui-this">
-									<a href="http://localhost:8080/frog/businessLoan.do" >商业贷款</a>
-								</dd>
-								<dd>
-									<a href="http://localhost:8080/frog/foundLoan.do" >公积金贷款</a>
-								</dd>
-								<dd>
-									<a href="">组合贷款</a>
-								</dd>
-							</dl>
-						</li>
-						<li class="layui-nav-item layui-nav-itemed">
-							<a class="" href="javascript:;">算月供</a>
-							<dl class="layui-nav-child">
-								<dd >
-									<a href="javascript:;">等额本息</a>
-								</dd>
-							</dl>
-							<dl class="layui-nav-child">
-								<dd >
-									<a href="javascript:;">等额本金</a>
-								</dd>
-							</dl>
-						</li>
-						<li class="layui-nav-item">
-							<a href="javascript:;">客户列表</a>
-						</li>
-						<li class="layui-nav-item">
-							<a href="javascript:;">模板列表</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+			<#include "/model/left.html" />
 
 			<!--主体-->
 			<div class="layui-body">
@@ -271,14 +153,11 @@
 			</div>
 
 			<!--页脚-->
-			<div class="layui-footer">
-				<!-- 底部固定区域 -->
-				© 91qw.top - 91青蛙欢迎您！
-			</div>
+			<#include "/model/foot.html">
 		</div>
 		<script src="${request.contextPath}/js/jquery-1.11.3-min.js"></script>
 		<script src="${request.contextPath}/js/layui.js"></script>
-		<script src="${request.contextPath}/js/common.js"></script>
+		<script src="${request.contextPath}/js/frog/common.js"></script>
 		<script src="${request.contextPath}/js/frog/business_loan.js"></script>
 
 	</body>

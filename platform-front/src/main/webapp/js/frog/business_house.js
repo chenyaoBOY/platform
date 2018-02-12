@@ -212,12 +212,6 @@ function checkNumber(ele,p,p2) {
 
 
 }
-//重置表单
-function resetForm() {
-    $('#totalMoney').val('');
-    $('#originalValue').val('');
-    $('#proxy_fee').val('');
-}
 function tip(p,txt) {
     $('#'+p).text(txt);
     $('#'+p).show();
