@@ -37,9 +37,6 @@
     width: 85px;
     text-align: right;
 }
-.result h3{
-    margin-left: 113px;
-}
 .result-num{
     width: 100px;
     color: #FD482C;
@@ -56,4 +53,7 @@
 }
 .layui-table tbody{
     text-align: right;
+}
+.split_h3{
+    margin-top: 30px;
 }

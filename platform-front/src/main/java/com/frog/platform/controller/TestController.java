@@ -19,6 +19,6 @@ public class TestController {
         VisitPv pv = service.queryByIdTest("1");
         System.out.println(pv);
 
-        return "index";
+        return "/index.html";
     }
 }

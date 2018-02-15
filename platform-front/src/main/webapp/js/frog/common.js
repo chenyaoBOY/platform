@@ -7,11 +7,12 @@ layui.use('element', function() {
 
 //重置表单
 function resetForm() {
-    $('#totalMoney').val('');
+    $('#house_price').val('');
+    $('#house_area').val('');
     $('#webPricePredict').val('');
     $('#originalValue').val('');
     $('#proxy_fee').val('');
-    $('#house_area').val('');
+    $('#guide_price').val('');
 }
 //*************************************************************************************************
 /*浮点数加减乘除*/

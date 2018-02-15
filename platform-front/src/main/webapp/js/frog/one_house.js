@@ -10,6 +10,7 @@ var fee_price=0;//计税值
 var geshui=0;
 var qishui=0;
 var zzs=0;
+var djk_val=0;//综合地价款
 var proxy_fee=0;//佣金
 var max_loan=0;//最大贷款额
 function calculate_fee() {
@@ -90,13 +91,18 @@ function calculate_fee() {
             }
         }
     }
-    var tdcrj=0;
-    if($("#tdcrj_status").val()==1){
-        tdcrj=fee_price*0.03;
-    }
 
-    var total_fee = qishui+geshui+zzs+tdcrj;
+
+    var zhdjk=0;
+    //计算综合地价款
+    if(djk_val==0){//计税价格*10%
+        zhdjk = fee_price*0.1;
+    }else{//（计税价-原值）*70%
+        zhdjk=sub(fee_price,$("#originalValue").val())*0.7;
+    }
+    var total_fee = qishui+geshui+zzs+zhdjk;
     var allFee = house_price+total_fee;
+
 
     //6.计算佣金
     if($("#proxy_fee").val()!=''){
@@ -148,7 +154,8 @@ function calculate_fee() {
     $('#every_month_pay').text(num_format(every_month_pay,2)+"   元/月");
     $('#every_month_pay2').text(num_format(mul(firstMoth,10000),2)+"   元/月"+'每月递减'+Number(dif).toFixed(2));
     $('#count_pay').text("300 期");
-    $('#tdcrj').text(num_format(tdcrj,2)+"   万元");
+    $('#zhdjk').text(num_format(zhdjk,2)+"   万元");
+
 
 }
 
@@ -214,6 +221,29 @@ function checkNullAndNum(ele) {
     $(ele).parent().next().hide();
     return true;
 }
+function checkOriginalVal(ele) {
+    var reg = /^\d+(\.\d+)?$/;
+    var value=$(ele).val();
+    if(value!='' && !reg.test(value)){
+        tip(ele,'仅支持数字哦！');
+        return false;
+    }
+    if(value!=''&&djk_val==1&&ghzdj==1){
+        if(Number(value)>Number($("#guide_price").val())){
+            tip(ele,'需小于过户指导价！');
+            return false;
+        }
+    }
+    if(value!=''&&djk_val==1&&ghzdj==0){
+        if(Number(value)>Number($("#guide_price").val())){
+            tip(ele,'需小于网签价！');
+            return false;
+        }
+    }
+    $(ele).parent().next().hide();
+    return true;
+
+}
 function checkNumber(ele) {
     var reg = /^\d+(\.\d+)?$/;
     var value=$(ele).val();
@@ -238,6 +268,13 @@ function checkWebPrice(ele) {
         tip(ele,'仅支持数字哦！');
         return false;
     }
+    if(djk_val==1){
+        var originalValue = $("#originalValue").val();
+        if(originalValue!=''&& Number(originalValue)>Number(value)){
+            tip(ele,'需大于原值！');
+            return false;
+        }
+    }
     $(ele).parent().next().hide();
     return true;
 }
@@ -253,11 +290,13 @@ function checkGuidPrice(ele) {
             tip(ele,'仅支持数字哦！');
             return false;
         }
-        // var webPrice = $("#webPricePredict").val();
-        // if(webPrice!=''&& Number(webPrice)>Number(value)){
-        //     tip(ele,'需大于网签价！');
-        //     return false;
-        // }
+        if(djk_val==1){
+            var originalValue = $("#originalValue").val();
+            if(originalValue!=''&& Number(originalValue)>Number(value)){
+                tip(ele,'需大于原值！');
+                return false;
+            }
+        }
     }
     $(ele).parent().next().hide();
     return true;
@@ -339,6 +378,9 @@ function tip(ele,txt) {
             }else{
                 $('.qishui').show();
             }
+        });
+        form.on('select(buy_year)', function(data){//房屋年数
+            djk_val=data.value;
         });
 
     });
