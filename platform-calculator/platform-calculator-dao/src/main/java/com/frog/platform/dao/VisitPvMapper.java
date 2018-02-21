@@ -2,9 +2,8 @@ package com.frog.platform.dao;
 
 import com.frog.platform.entity.VisitPv;
 import com.frog.platform.entity.VisitPvExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface VisitPvMapper {
     int countByExample(VisitPvExample example);

@@ -1,0 +1,52 @@
+
+
+<div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <li class="layui-nav-item layui-nav-itemed">
+                <a class="" href="javascript:">管理</a>
+                <dl class="layui-nav-child">
+                    <dd <#if pageStatus??><#if pageStatus==0>class='layui-this'</#if></#if>>
+                        <a href="javascript:showChart('business_house');"  >商品房</a>
+                    </dd>
+                </dl>
+                <dl class="layui-nav-child">
+                    <dd <#if pageStatus??><#if pageStatus==0>class='layui-this'</#if></#if>>
+                        <a href="javascript:showChart('one_house');"  >一类经适房</a>
+                    </dd>
+                </dl>
+                <dl class="layui-nav-child">
+                    <dd <#if pageStatus??><#if pageStatus==0>class='layui-this'</#if></#if>>
+                        <a href="javascript:showChart('two_house');"  >二类经适房</a>
+                    </dd>
+                </dl>
+                <dl class="layui-nav-child">
+                    <dd <#if pageStatus??><#if pageStatus==0>class='layui-this'</#if></#if>>
+                        <a href="javascript:showChart('central_house');"  >央产房</a>
+                    </dd>
+                </dl>
+                <dl class="layui-nav-child">
+                    <dd <#if pageStatus??><#if pageStatus==0>class='layui-this'</#if></#if>>
+                        <a href="javascript:showChart('found_loan');"  >公积金贷款</a>
+                    </dd>
+                </dl>
+                <dl class="layui-nav-child">
+                    <dd <#if pageStatus??><#if pageStatus==0>class='layui-this'</#if></#if>>
+                        <a href="javascript:showChart('business_loan');"  >商贷</a>
+                    </dd>
+                </dl>
+            </li>
+
+            <li class="layui-nav-item layui-nav-itemed">
+                <a class="" href="javascript:">意见反馈</a>
+                <dl class="layui-nav-child">
+                    <dd <#if pageStatus??><#if pageStatus==0>class='layui-this'</#if></#if>>
+                        <a href="javascript:showFeedback();"  >反馈列表</a>
+                    </dd>
+                </dl>
+            </li>
+
+        </ul>
+    </div>
+</div>

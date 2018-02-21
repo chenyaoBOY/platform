@@ -1,0 +1,11 @@
+.layui-layout-admin .layui-logo a{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    line-height: 60px;
+    text-align: center;
+    color:white;
+    font-size: 22px;
+}

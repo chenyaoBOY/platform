@@ -7,8 +7,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class FrogCalcultorController {
+
+
+    @RequestMapping("/")
+    public String indexPage(ModelMap map){
+        map.put("guideStatus",0);
+        return "index";
+    }
+
     @RequestMapping("/tax.do")
     public String tax(ModelMap map, @RequestParam(value = "type",defaultValue = "0") Integer type){
+        map.put("guideStatus",1);
         if(type == 0){//商品房
             map.put("pageStatus",0);
             return "calculator/business_house";
@@ -30,12 +39,14 @@ public class FrogCalcultorController {
     }
     @RequestMapping("businessLoan.do")
     public String businessLoan(ModelMap map){
+        map.put("guideStatus",1);
         map.put("pageStatus",5);
 
         return "calculator/business_loan";
     }
     @RequestMapping("foundLoan.do")
     public String foundLoan(ModelMap map){
+        map.put("guideStatus",1);
         map.put("pageStatus",6);
 
         return "calculator/found_loan";

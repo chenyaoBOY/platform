@@ -10,11 +10,16 @@ public class CalculatorProvider {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 new String[] {"applicationContext-dubbo.xml",
                         "applicationContext-dao.xml",
-                        "applicationContext-service.xml"});
+                        "applicationContext-service.xml",
+                        "applicationContext-quartz.xml",
+                        "applicationContext-redis.xml"
+                });
 
         context.start();
 
 
         System.in.read();
     }
+
+
 }
