@@ -9,8 +9,6 @@
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
 
-    <context:property-placeholder location="classpath:db.properties" ignore-unresolvable="true"/>
-
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.user}"/>

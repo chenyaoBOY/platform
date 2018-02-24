@@ -3,6 +3,8 @@ package com.frog.platform.quartz;
 import com.frog.platform.dao.VisitPvMapper;
 import com.frog.platform.entity.VisitPv;
 import com.frog.platform.entity.VisitPvExample;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
@@ -12,53 +14,54 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@Component
 public class PagePvTrigger {
     @Autowired
     private JedisPool jedisPool;
     private static final String PAGE_PV_COUNT="PAGE_PV_COUNT";
-//    private static final String REDIS_HOST="192.168.2.129";
-//    private static final int REDIS_PORT=6379;
+    private static final Logger logger = LoggerFactory.getLogger(PagePvTrigger.class);
 
     @Autowired
     private VisitPvMapper visitPvMapper;
 
+    /**
+     * 每5分钟刷新一次访问数据  将redis中的数据存储到数据库
+     */
     public void pagePvStatistic(){
-//        JedisPool pool = new JedisPool(REDIS_HOST,REDIS_PORT);
+        logger.info("开始刷新访问数据-----------------");
         Jedis jedis = jedisPool.getResource();
-        Map<String, String> map = jedis.hgetAll(PAGE_PV_COUNT);
-        if(map.isEmpty()){
-            return;
-        }
+        try{
+            Map<String, String> map = jedis.hgetAll(PAGE_PV_COUNT);
+            Date date = formateDate(new Date());
 
-        Date date = formateDate(new Date());
+            for (String key : map.keySet()) {
+                VisitPvExample example = new VisitPvExample();
+                VisitPvExample.Criteria criteria = example.createCriteria();
+                criteria.andPageNameEqualTo(key);
+                criteria.andDateEqualTo(date);
 
-        for (String key : map.keySet()) {
+                List<VisitPv> list = visitPvMapper.selectByExample(example);
 
-            VisitPvExample example = new VisitPvExample();
-            VisitPvExample.Criteria criteria = example.createCriteria();
-            criteria.andPageNameEqualTo(key);
-            criteria.andDateEqualTo(date);
+                VisitPv pv = new VisitPv();
+                pv.setId(UUID.randomUUID().toString());
+                pv.setDate(date);
+                pv.setPageName(key);
+                pv.setDayVisit(Long.valueOf(map.get(key)));
 
-            List<VisitPv> list = visitPvMapper.selectByExample(example);
-
-            VisitPv pv = new VisitPv();
-            pv.setId(UUID.randomUUID().toString());
-            pv.setDate(date);
-            pv.setPageName(key);
-            pv.setDayVisit(Long.valueOf(map.get(key)));
-
-            if(list.isEmpty()){
-                visitPvMapper.insert(pv);
-            }else{
-                VisitPv pv1 = list.get(0);
-                pv1.setDayVisit(Long.valueOf(map.get(key)));
-                visitPvMapper.updateByPrimaryKey(pv1);
+                if(list.isEmpty()){
+                    visitPvMapper.insert(pv);
+                }else{
+                    VisitPv pv1 = list.get(0);
+                    pv1.setDayVisit(Long.valueOf(map.get(key)));
+                    visitPvMapper.updateByPrimaryKey(pv1);
+                }
             }
+        }catch (Exception e){
+            logger.info(e.getStackTrace().toString());
+        } finally {
+            jedis.close();
         }
-        jedis.close();
-//        pool.close();
 
+        logger.info("结束刷新-----------------");
     }
 
     public Date formateDate(Date date){

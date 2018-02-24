@@ -10,8 +10,8 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
      <!--引用dubbo服务 -->
-    <dubbo:application name="front"/>
-    <dubbo:registry protocol="zookeeper" timeout="3000000" address="192.168.2.129:2181"/>
+    <dubbo:application  name="${dubbo.application.name}"/>
+    <dubbo:registry protocol="zookeeper" timeout="${dubbo.timeout}" address="${dubbo.registry.address}"/>
     <dubbo:reference interface="com.frog.platform.VisitPvService" id="visitPvServiceImpl" />
     <dubbo:reference interface="com.frog.platform.FeedbackService" id="feedbackServiceImpl" />
 
