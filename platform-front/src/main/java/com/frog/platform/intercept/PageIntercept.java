@@ -15,6 +15,7 @@ public class PageIntercept extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object o, ModelAndView mv) throws Exception {
+
         if(mv==null){
             return ;
         }
@@ -25,11 +26,7 @@ public class PageIntercept extends HandlerInterceptorAdapter {
         }else{
             pagePvUtil.pagePvStatistic(viewName.substring(index+1,viewName.length()));
         }
-//        if(index==-1){
-//            PagePvUtil.pagePvStatistic(viewName);
-//        }else{
-//            PagePvUtil.pagePvStatistic(viewName.substring(index+1,viewName.length()));
-//        }
+
 
     }
 }
