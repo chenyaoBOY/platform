@@ -74,18 +74,10 @@ function calculate_fee() {
     if(house_year==0){
         geshui == 0;
     }else{
-        if($("#originalValue").val()==''){//全额征收
-            if(ghzdj==0){//若网签价＞最低过户指导价 则个人所得税=（网签价-本次增值税）×1%；
-                geshui = sub(fee_price,zzs)*0.01;
-            }else{//若最低过户指导价＞网签价 则个人所得税=最低过户指导价/1.05×1%。
-                geshui = fee_price/1.05*0.01;
-            }
-        }else{//差额征收 *20%
-            if(ghzdj==0){//若网签价＞最低过户指导价 差额=网签价-本次增值税及附加-原值-原契税-网签价×10%-贷款利息
-                geshui = (fee_price*0.9-zzs-Number($("#originalValue").val()))*0.2
-            }else{//若最低过户指导价＞网签价 最低过户指导价/1.05-原值-原契税-附加- 最低过户指导价×10%-贷款利息
-                geshui = (fee_price/1.05-zzs-Number($("#originalValue").val())-fee_price*0.1)*0.2
-            }
+        if(ghzdj==0){//若网签价＞最低过户指导价 则个人所得税=（网签价-本次增值税）×1%；
+            geshui = sub(fee_price,zzs)*0.01;
+        }else{//若最低过户指导价＞网签价 则个人所得税=最低过户指导价/1.05×1%。
+            geshui = fee_price/1.05*0.01;
         }
     }
 
@@ -186,8 +178,8 @@ function checkForm() {
         b4 = checkGuidPrice($("#guide_price"));
     }
     var b5 = checkNumber($("#proxy_fee"));
-    var b6 = checkNumber($("#originalValue"));
-    if(b1&&b2&&b3&&b4&&b5&&b6){
+    // var b6 = checkNumber($("#originalValue"));
+    if(b1&&b2&&b3&&b4&&b5){
         return true;
     }else{
         return false;

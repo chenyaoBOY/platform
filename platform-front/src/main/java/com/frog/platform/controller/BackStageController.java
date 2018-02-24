@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("back")
@@ -55,14 +52,23 @@ public class BackStageController {
     }
     @RequestMapping("getFeedbackData.do")
     @ResponseBody
-    public  List<Feedback> getFeedbackData(){
-
+    public  Map<String,Object> getFeedbackData(){
+        Map<String,Object> map = new HashMap<>();
         List<Feedback> list = feedbackService.getList();
-        return list;
+
+        map.put("code",0);
+        map.put("msg","");
+        map.put("count",list.size());
+        map.put("data",list);
+
+        return map;
     }
     @RequestMapping("saveFeedbackData.do")
     @ResponseBody
     public ResultUtil saveFeedbackData(Feedback feedback){
+        feedback.setId(UUID.randomUUID().toString());
+        feedback.setDate(new Date());
+
         ResultUtil result = feedbackService.saveFeedback(feedback);
 
         return result;

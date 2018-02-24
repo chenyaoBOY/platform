@@ -162,7 +162,7 @@ function judgeHouseCommonStatus() {
     if(Number($("#house_area").val())>140){
         return 1;
     }
-    var house_price = Number($("#house_price").val());
+    var house_price = fee_price;
     var avg = div(house_price,$("#house_area").val());
     if(house_location==0){//39600  4680000
         if(house_price>468&&avg>3.96){

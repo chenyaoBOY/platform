@@ -15,6 +15,7 @@
         <module>platform-calculator-dao</module>
         <module>platform-calculator-service</module>
         <module>platform-calculator-interface</module>
+        <module>platform-calculator-web</module>
     </modules>
 
 

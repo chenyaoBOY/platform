@@ -4,6 +4,7 @@ import com.frog.platform.dao.VisitPvMapper;
 import com.frog.platform.entity.VisitPv;
 import com.frog.platform.entity.VisitPvExample;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -11,17 +12,20 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+@Component
 public class PagePvTrigger {
+    @Autowired
+    private JedisPool jedisPool;
     private static final String PAGE_PV_COUNT="PAGE_PV_COUNT";
-    private static final String REDIS_HOST="192.168.2.129";
-    private static final int REDIS_PORT=6379;
+//    private static final String REDIS_HOST="192.168.2.129";
+//    private static final int REDIS_PORT=6379;
 
     @Autowired
     private VisitPvMapper visitPvMapper;
 
     public void pagePvStatistic(){
-        JedisPool pool = new JedisPool(REDIS_HOST,REDIS_PORT);
-        Jedis jedis = pool.getResource();
+//        JedisPool pool = new JedisPool(REDIS_HOST,REDIS_PORT);
+        Jedis jedis = jedisPool.getResource();
         Map<String, String> map = jedis.hgetAll(PAGE_PV_COUNT);
         if(map.isEmpty()){
             return;
@@ -53,7 +57,7 @@ public class PagePvTrigger {
             }
         }
         jedis.close();
-        pool.close();
+//        pool.close();
 
     }
 

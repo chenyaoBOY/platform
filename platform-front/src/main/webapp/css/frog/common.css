@@ -9,3 +9,21 @@
     color:white;
     font-size: 22px;
 }
+.layui-body{
+    height: 100%
+}
+.foot{
+    margin-top:150px;
+    background-color: gainsboro
+}
+.pay_button{
+    margin-left: 465px;
+}
+.pay_btn{
+    margin-top: 10px;
+    margin-left: 63px;
+}
+.foot_bottom{
+    height: 50px;margin-bottom: 50px
+}
+

@@ -3,12 +3,10 @@
 <mapper namespace="com.frog.platform.dao.FeedbackMapper" >
   <resultMap id="BaseResultMap" type="com.frog.platform.entity.Feedback" >
     <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="person_info" property="personInfo" jdbcType="VARCHAR" />
     <result column="date" property="date" jdbcType="TIMESTAMP" />
     <result column="pageName" property="pagename" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.frog.platform.entity.Feedback" extends="BaseResultMap" >
-    <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,27 +67,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, person_info, date, pageName
+    id, content, person_info, date, pageName
   </sql>
-  <sql id="Blob_Column_List" >
-    content
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.frog.platform.entity.FeedbackExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from feedback
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.frog.platform.entity.FeedbackExample" >
     select
     <if test="distinct" >
@@ -104,11 +83,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from feedback
     where id = #{id,jdbcType=VARCHAR}
   </select>
@@ -123,16 +100,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.frog.platform.entity.Feedback" >
-    insert into feedback (id, person_info, date, 
-      pageName, content)
-    values (#{id,jdbcType=VARCHAR}, #{personInfo,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, 
-      #{pagename,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+    insert into feedback (id, content, person_info, 
+      date, pageName)
+    values (#{id,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{personInfo,jdbcType=VARCHAR}, 
+      #{date,jdbcType=TIMESTAMP}, #{pagename,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.frog.platform.entity.Feedback" >
     insert into feedback
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
+      </if>
+      <if test="content != null" >
+        content,
       </if>
       <if test="personInfo != null" >
         person_info,
@@ -143,13 +123,13 @@
       <if test="pagename != null" >
         pageName,
       </if>
-      <if test="content != null" >
-        content,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
       </if>
       <if test="personInfo != null" >
         #{personInfo,jdbcType=VARCHAR},
@@ -159,9 +139,6 @@
       </if>
       <if test="pagename != null" >
         #{pagename,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -177,6 +154,9 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=VARCHAR},
       </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
       <if test="record.personInfo != null" >
         person_info = #{record.personInfo,jdbcType=VARCHAR},
       </if>
@@ -186,21 +166,7 @@
       <if test="record.pagename != null" >
         pageName = #{record.pagename,jdbcType=VARCHAR},
       </if>
-      <if test="record.content != null" >
-        content = #{record.content,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update feedback
-    set id = #{record.id,jdbcType=VARCHAR},
-      person_info = #{record.personInfo,jdbcType=VARCHAR},
-      date = #{record.date,jdbcType=TIMESTAMP},
-      pageName = #{record.pagename,jdbcType=VARCHAR},
-      content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -208,6 +174,7 @@
   <update id="updateByExample" parameterType="map" >
     update feedback
     set id = #{record.id,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
       person_info = #{record.personInfo,jdbcType=VARCHAR},
       date = #{record.date,jdbcType=TIMESTAMP},
       pageName = #{record.pagename,jdbcType=VARCHAR}
@@ -218,6 +185,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.frog.platform.entity.Feedback" >
     update feedback
     <set >
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
       <if test="personInfo != null" >
         person_info = #{personInfo,jdbcType=VARCHAR},
       </if>
@@ -227,23 +197,13 @@
       <if test="pagename != null" >
         pageName = #{pagename,jdbcType=VARCHAR},
       </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.frog.platform.entity.Feedback" >
-    update feedback
-    set person_info = #{personInfo,jdbcType=VARCHAR},
-      date = #{date,jdbcType=TIMESTAMP},
-      pageName = #{pagename,jdbcType=VARCHAR},
-      content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.frog.platform.entity.Feedback" >
     update feedback
-    set person_info = #{personInfo,jdbcType=VARCHAR},
+    set content = #{content,jdbcType=VARCHAR},
+      person_info = #{personInfo,jdbcType=VARCHAR},
       date = #{date,jdbcType=TIMESTAMP},
       pageName = #{pagename,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}

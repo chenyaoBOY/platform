@@ -6,11 +6,15 @@
 	</div>
 	<!-- 头部区域（可配合layui已有的水平导航） -->
 	<ul class="layui-nav layui-layout-left">
-		<li class="layui-nav-item <#if guideStatus??><#if guideStatus==0>layui-this</#if></#if>">
-			<a href="${request.contextPath}/">首页</a>
-		</li>
+		<!--<li class="layui-nav-item <#if guideStatus??><#if guideStatus==0>layui-this</#if></#if>">-->
+			<!--<a href="${request.contextPath}/">首页</a>-->
+		<!--</li>-->
 		<li class="layui-nav-item <#if guideStatus??><#if guideStatus==1>layui-this</#if></#if>">
 			<a href="${request.contextPath}/tax.do"  >房贷通</a>
+
+		</li>
+		<li class="layui-nav-item">
+			<a href="javascript:showFeed();" >意见反馈</a>
 
 		</li>
 		<!--<li class="layui-nav-item">-->

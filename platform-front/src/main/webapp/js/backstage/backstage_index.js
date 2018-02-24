@@ -1,5 +1,7 @@
 
-
+$(function () {
+    $('.feedback_table').hide();
+})
 var myChart = echarts.init(document.getElementById('main'));
 //默认加载商品房访问量
 $.ajax({
@@ -109,6 +111,7 @@ $.ajax({
 
 //图表数据获取
 function showChart(param) {
+    $('#main').show();
     $.ajax({
         type    : 'POST',
         async   : false,
@@ -215,22 +218,24 @@ function showChart(param) {
     })
 }
 
-function showFeedback() {
 
-    $.ajax({
-        type    : 'POST',
-        async   : false,
-        url     : platform.path + '/back/getFeedbackData.do',
-        data    :"",
-        dataType:'json',
-        success :function (data) {
+function showFeedbackList() {
+    $('.feedback_table').show();
+    $('#main').hide();
 
-        },
-        error:function () {
-            $(".wait-wrap").remove();
-            layer.msg('获取数据失败！');
-        }
-    })
+    layui.use('table', function(){
+        var table = layui.table;
 
-
+        table.render({
+            elem: '#feedback_table'
+            ,url: platform.path + '/back/getFeedbackData.do'
+            ,cols: [[
+                {field:'id',title: 'ID', sort: true}
+                ,{field:'date',  title: '反馈时间',sort: true}
+                ,{field:'pagename',  title: '反馈页面', sort: true}
+                ,{field:'content', title: '反馈内容', minWidth: 150,sort: true}
+            ]]
+            ,page: true
+        });
+    });
 }
