@@ -11,8 +11,8 @@ public class FrogCalcultorController {
 
     @RequestMapping("/")
     public String indexPage(ModelMap map){
-        map.put("guideStatus",0);
-        return "index";
+//        map.put("guideStatus",0);
+        return "redirect:tax.do";
     }
 
     @RequestMapping("/tax.do")
