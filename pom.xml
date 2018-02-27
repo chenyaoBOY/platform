@@ -49,6 +49,7 @@
         <log4j.version>1.2.17</log4j.version>
         <redis.version>2.8.2</redis.version>
         <netjson.version>2.4</netjson.version>
+        <logback.version>1.2.3</logback.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -265,7 +266,12 @@
                 <version>${fastdfs.version}</version>
             </dependency>
 
-
+            <!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-core -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
 
 
 

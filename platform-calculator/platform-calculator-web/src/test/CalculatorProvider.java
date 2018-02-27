@@ -11,8 +11,7 @@ public class CalculatorProvider {
                 new String[] {"applicationContext-dubbo.xml",
                         "applicationContext-dao.xml",
                         "applicationContext-service.xml",
-                        "applicationContext-quartz.xml",
-                        "applicationContext-redis.xml"
+                        "applicationContext-quartz.xml"
                 });
 
         context.start();

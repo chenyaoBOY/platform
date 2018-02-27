@@ -1,0 +1,36 @@
+.layadmin-user-login-main {
+    width: 375px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+.layui-layout-body{
+    background-color: #F2F2F2;
+}
+.layui-layout-body {
+    overflow: auto;
+}
+.layadmin-user-login {
+    position: relative;
+    left: 0;
+    top: 0;
+    padding: 110px 0;
+    min-height: 100%;
+    box-sizing: border-box;
+}
+.layadmin-user-login-header {
+    text-align: center;
+}
+.layadmin-user-login-box {
+    padding: 20px;
+}
+.layadmin-user-login-box {
+    padding: 20px;
+}
+.layadmin-user-login-body .layui-form-item {
+    position: relative;
+}
+.layui-form-item {
+    margin-bottom: 15px;
+    clear: both;
+    *zoom: 1;
+}

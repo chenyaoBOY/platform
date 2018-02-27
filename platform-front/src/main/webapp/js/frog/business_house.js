@@ -1,4 +1,9 @@
 
+
+$(function () {
+})
+
+
 var check_flag = true;
 var xqrjl=0;//小区容积率 0：大于等于1.0   1：小于1.0
 var house_location=0;//小区位置  0：五环内 1：5-6环  1：六环外
