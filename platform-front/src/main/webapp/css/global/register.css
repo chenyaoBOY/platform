@@ -34,3 +34,35 @@
     clear: both;
     *zoom: 1;
 }
+.layadmin-user-login-footer p{
+    text-align: center;
+    color: black;
+}
+.layadmin-user-login-footer p a{
+    text-align: center;
+    color: black;
+}
+.layadmin-user-login-other a{
+    color: black;
+    float: right;
+    text-decoration-line: underline;
+}
+.height_layout{
+    height: 100%;
+}
+.layadmin-user-login-icon {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 38px;
+    line-height: 36px;
+    text-align: center;
+}
+.layui-icon {
+    font-family: layui-icon !important;
+    font-size: 16px;
+    font-style: normal;
+}
+.layadmin-user-login-body .layui-form-item .layui-input {
+    padding-left: 38px;
+}

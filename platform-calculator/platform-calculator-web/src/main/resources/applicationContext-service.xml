@@ -10,7 +10,9 @@
 
     <context:component-scan base-package="com.frog.platform"/>
 
-    <context:property-placeholder location="classpath:config.properties" ignore-unresolvable="true"/>
+    <context:property-placeholder location="classpath:conf/db.properties" ignore-unresolvable="true"/>
+    <context:property-placeholder location="classpath:dubbo.properties" ignore-unresolvable="true"/>
+    <context:property-placeholder location="classpath:conf/redis.properties" ignore-unresolvable="true"/>
 
      <!--事务管理器 -->
     <bean id="transactionManager"
