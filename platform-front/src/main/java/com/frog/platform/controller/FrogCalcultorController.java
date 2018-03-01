@@ -8,13 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class FrogCalcultorController {
 
-
-    @RequestMapping("/")
-    public String indexPage(ModelMap map){
-        map.put("guideStatus",1);
-        return "calculator/business_house";
-    }
-
     @RequestMapping("/tax.do")
     public String tax(ModelMap map, @RequestParam(value = "type",defaultValue = "0") Integer type){
         map.put("guideStatus",1);

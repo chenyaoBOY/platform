@@ -2,12 +2,12 @@
 <!--头部导航栏-->
 <div class="layui-header">
 	<div class="layui-logo">
-		<a href="${request.contextPath}/">醉青蛙</a>
+		<a href="${request.contextPath}/">91青蛙</a>
 	</div>
 	<!-- 头部区域（可配合layui已有的水平导航） -->
 	<ul class="layui-nav layui-layout-left">
-		<!--<li class="layui-nav-item <#if guideStatus??><#if guideStatus==0>layui-this</#if></#if>">-->
-			<!--<a href="${request.contextPath}/">首页</a>-->
+		<li class="layui-nav-item <#if guideStatus??><#if guideStatus==0>layui-this</#if></#if>">
+			<a href="${request.contextPath}/">首页</a>
 		<!--</li>-->
 		<li class="layui-nav-item <#if guideStatus??><#if guideStatus==1>layui-this</#if></#if>">
 			<a href="${request.contextPath}/tax.do"  >房贷通</a>
